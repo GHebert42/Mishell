@@ -1,3 +1,5 @@
+/* $> gcc -o example1 example1.c */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -39,7 +41,7 @@ int main(int argc, char *argv[], char *env[])
       close(pipe_fd[1]);
 
       while ((ret = read(pipe_fd[0], buffer, 1023)) != 0)
-	  {
+	    {
         printf("%d\n", ret);
         buffer[ret] = 0;
         printf("%s\n", buffer);
