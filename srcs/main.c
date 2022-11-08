@@ -1,23 +1,4 @@
 
-/*
-
-
-    #include <stdio.h>
-       #include <readline/readline.h>
-       #include <readline/history.h>
-
-       char *
-       readline (const char *prompt);
-       
-       
-
-#include "../incs/minishell.h"
-
-int main(int ac, char **av, char **envp)
-{
-    
-}
-*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <readline/readline.h>
@@ -38,7 +19,6 @@ int main()
 
         // Add input to readline history.
         add_history(input);
-
         // Do stuff...
 
         // Free buffer that was allocated by readline
