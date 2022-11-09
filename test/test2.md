@@ -171,8 +171,8 @@ char    *mini_getenv(char *var, char **envp, int n) {
     while (!ft_strchr(var, '-') && envp && envp[i])
     {
         n2 = n;
-        if (n2 < ft_strchr_i(envp[i], '='))                             --
-            n2 = ft_strchr_i(envp[i], '=');                             --
+        if (n2 < ft_strchr_i(envp[i], '='))                          //   --
+            n2 = ft_strchr_i(envp[i], '=');                           //  --
         if(!ft_strncmp(envp[i], var, n2))
             return (ft_substr(envp[i], n2 + 1, ft_strlen(envp[i])));
         i++;
@@ -194,8 +194,8 @@ char    **mini_setenv(char *var, char *value, char **envp, int n) {
     while (!ft_strchr(var, '=') && envp && envp[++i[0]])
     {
         i[1] = n;
-        if (i[1] < ft_strchr_1(envp[i[0]], '='))                        --
-            i[1] = ft_strchr_i(envp[i[0]], '=');                        --
+        if (i[1] < ft_strchr_1(envp[i[0]], '='))                      //  --
+            i[1] = ft_strchr_i(envp[i[0]], '=');                      //  --
         if (!ft_strncmp(envp[i[0]], var, i[1]))
         {
             aux[0] = envp[i[0]];
@@ -204,7 +204,7 @@ char    **mini_setenv(char *var, char *value, char **envp, int n) {
             return (envp);
         }
     }
-    envp = ft_mx_ext(envp, aux[1]);                                     --
+    envp = ft_mx_ext(envp, aux[1]);                                   //  --
     free(aux[1]);
     return (envp); 
 }

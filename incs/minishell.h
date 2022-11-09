@@ -1,10 +1,9 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-
+# include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "../libft/get_next_line.h"
 
 /* fd Refs*/
 # define READ_END 0
@@ -46,8 +45,8 @@ typedef struct s_mini t_mini;
 
 struct s_prompt
 {
-	char *cmds;
-	char **envp;
+	char *cmds;		
+	char **envp;	/*  store env  tab[][]  */
 	pid_t	pid;
 };
 
@@ -67,10 +66,23 @@ struct s_lexer
 
 struct s_mini
 {
-	char **full_cmd;
+	char **full_story;
 	char *full_path;
 	int infile;
 	int outfile;
 };
+
+//signal
+void    handle_sigint(int sig);
+char    *mini_getenv(char *var, char **envp, int n);
+char    **mini_setenv(char *var, char *value, char **envp, int n);
+//prompt 
+char   	*mini_getprompt(t_prompt prompt);
+//parse
+void    *check_args(char *out, t_prompt *p);
+//subsplit
+char **ft_cmdtrim(const char *s, char *set);
+//update
+void    exec_custom(char **out, char *full, char *args, char **envp) ;
 
 #endif

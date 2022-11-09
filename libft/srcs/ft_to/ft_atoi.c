@@ -9,7 +9,8 @@
 /*   Updated: 2021/10/06 09:06:12 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
+#include "../includes/libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -35,3 +36,4 @@ int	ft_atoi(const char *str)
 		num = num * 10 + (*(str + i++) - '0');
 	return (num * sign);
 }
+
