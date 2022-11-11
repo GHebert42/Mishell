@@ -5,16 +5,21 @@ CFLAGS 	=	-Wall -Wextra -Werror
 RM 		=	rm -rf
 
 H_SRC 	=	minishell.h 
-H_DIR	= 	incs/
+H_DIR	= 	includes/
 HEADER	=	$(addprefix $(H_DIR), $(H_SRC))
 
-SRCS 	=	main.c 
+SRCS 	=	main.c
+
+#prompt.c signal.c parse.c subsplit.c check.c \
+			get_next_line.c get_next_line_utils.c #main.c 
 S_DIR	= 	srcs/
 S_PTH	= 	$(addprefix $(S_DIR), $(SRCS))
 OBJ_S 	=	$(S_PTH:.c=.o)
 
+	
 
-SRCF	= 	 
+
+SRCF	= 	
 F_DIR	=	libft/
 F_PTH	= 	$(addprefix $(F_DIR), $(SRCF))
 OBJ_F	= 	$(F_PTH:.c=.o)
@@ -22,8 +27,8 @@ OBJ_F	= 	$(F_PTH:.c=.o)
 %.o: %.c $(HEADER) Makefile
 				@$(CC) $(CFLAGS)  -I$(H_DIR) -I$(F_DIR) -c $< -o $@
 
-$(NAME)	:	$(OBJ_F) $(OBJ_S)
-				$(CC) $(OBJ_F) $(OBJ_S) -o $(NAME)  -lcurses readline/libhistory.a readline/libreadline.a
+$(NAME)	:	$(OBJ_S)
+				$(CC)  $(OBJ_S) -o $(NAME)  -lcurses readline/libhistory.a readline/libreadline.a libft/libft.a 
 
 all		:	$(NAME)
 

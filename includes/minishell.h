@@ -4,7 +4,8 @@
 
 # include <unistd.h>
 # include <stdio.h>
-# include "../libft/get_next_line.h"
+# include "../includes/get_next_line.h"
+# include "../libft/incs/libft.h"
 
 /* fd Refs*/
 # define READ_END 0
@@ -72,5 +73,18 @@ struct s_mini
 	int infile;
 	int outfile;
 };
+
+//signal
+// void    handle_sigint(int sig);
+// char    *mini_getenv(char *var, char **envp, int n);
+// char    **mini_setenv(char *var, char *value, char **envp, int n);
+// //prompt 
+// char   	*mini_getprompt(t_prompt prompt);
+// //parse
+// void    *check_args(char *out, t_prompt *p);
+// //subsplit
+// char **ft_cmdtrim(const char *s, char *set);
+//update
+// void    exec_custom(char **out, char *full, char *args, char **envp) ;
 
 #endif
