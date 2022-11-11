@@ -8,7 +8,7 @@ H_SRC 	=	minishell.h
 H_DIR	= 	includes/
 HEADER	=	$(addprefix $(H_DIR), $(H_SRC))
 
-SRCS 	=	main.c
+SRCS 	=	check.c signal.c
 
 #prompt.c signal.c parse.c subsplit.c check.c \
 			get_next_line.c get_next_line_utils.c #main.c 

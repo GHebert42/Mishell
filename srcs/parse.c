@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:48:49 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/10 22:00:45 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/11 02:08:37 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,38 @@ extern int g_status;
     //     close(fd[READ_END]); 
 // }
 
-static void *parse_args(char **args, t_prompt *p)
+static char **split_all(char **args, t_dot p)
 {
+    char **subsplit;
+    int i;
+    // int quotes[2];
+
+    (void) p;
+    i = -1;
+    while (args && args[++i])
+    {
+        // args[i] = expand_vars(args[i], -1, quotes, p);       
+        // args[i] = expand_path(args[i], -1, quotes, \
+        //     mini_getenv("HOME", prompt->envp, 4));              
+        subsplit = ft_cmdsubsplit(args[i], "<|>");              
+        ft_mx_rpl(&args, subsplit, i);                           
+        i += ft_mx_len(subsplit) - 1;                          
+        ft_mx_free(&subsplit);                                 
+    }
+    return (args); 
+}
+
+static t_dot parse_args(char **args, t_dot p)
+{
+    t_mini m;
     int is_exit;
     int i;
 
     is_exit = 0;
-    // p->cmds = fill_nodes(split_all(args, p), -1);              
-    if (!p->cmds)
+    m.full_cmd  = split_all(args, p);              
+    if (!m.full_cmd)
         return (p);
-    // i = ft_lstsize(p->cmds);
+    // i = ft_lstsize(m.full_cmd);
     // g_status = builtin(p, p->cmds, &is_exit, 0);             
     i = 0;
     while (i-- > 0)
@@ -86,31 +108,31 @@ static void *parse_args(char **args, t_prompt *p)
     //     g_status = 0;
     if (g_status > 255)
         g_status = g_status / 255;
-    if (args && is_exit)
-    {
-        // ft_lstclear(&p->cmds, free_content);
-        return (NULL);
-    }
+    // if (args && is_exit)
+    // {
+    //     ft_lstclear(&p->cmds, free_content);
+    //     return (NULL);
+    // }
     return (p);
 }
 
-void    *check_args(char *out, t_prompt *p) 
+t_dot check_args(char *out, t_dot p) 
 {
     char    **a;
-    // t_mini *n;
+    t_mini  m;
 
     if (!out)
     {
         printf("exit\n");
-        return (NULL);
+        return (p);
     }
     if (out[0] != '\0')
         add_history(out);                                 
-    a = ft_cmdtrim(out, " ");                               
+    m.full_cmd = ft_cmdtrim(out, " ");                               
     free(out);
-    if (!a)
-        return ("");
-    p = parse_args(a, p);                                    
+    // if (!a)
+    //     return ("");
+    p = parse_args(m.full_cmd, p);                                    
     // if (p && p->cmds)
         // n = p->cmds->content;
     // if (p && p->cmds && n && n->full_cmd && ft_lstsize(p->cmds) == 1)
@@ -120,23 +142,3 @@ void    *check_args(char *out, t_prompt *p)
     return (p); 
 }
 
-// static char **split_all(char **args, t_prompt *p)
-    // {
-    //     char **subsplit;
-    //     int i;
-    //     // int quotes[2];
-
-    //     (void) p;
-    //     i = -1;
-    //     while (args && args[++i])
-    //     {
-    //         // args[i] = expand_vars(args[i], -1, quotes, p);       
-    //         // args[i] = expand_path(args[i], -1, quotes, \
-    //         //     mini_getenv("HOME", prompt->envp, 4));              
-    //         // subsplit = ft_cmdsubsplit(args[i], "<|>");              
-    //         ft_mx_rpl(&args, subsplit, i);                           
-    //         i += ft_mx_len(subsplit) - 1;                          
-    //         ft_mx_free(&subsplit);                                 
-    //     }
-    //     return (args); 
-// }

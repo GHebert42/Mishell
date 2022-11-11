@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:59:09 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/10 22:01:20 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/11 03:02:01 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ long long		ps_atoll(char *s);
 
 
 
-static void mini_getpid(t_prompt *p) 
+static void mini_getpid(t_dot *p) 
 {
     pid_t   pid;
 
@@ -45,14 +45,14 @@ static void mini_getpid(t_prompt *p)
     p->pid = pid - 1; 
 }
 
-static t_prompt init_vars(t_prompt prompt, char *str, char **av)
+static t_dot init_vars(t_dot p, char *str, char **av)
 {
     char *num;
 
-    str = getcwd(NULL, 0);                                            
-    prompt.envp = mini_setenv("PWD", str, prompt.envp, 3);           
+    p.cmds = getcwd(NULL, 0);                                            
+    p.envp = mini_setenv("PWD", str, p.envp, 3);           
     free(str);
-    str = mini_getenv("SHLVL", prompt.envp, 5);                       
+    str = mini_getenv("SHLVL", p.envp, 5);                       
     if(!str)
         num = ft_strdup("1");
     else if(!(ps_atoi(str)))
@@ -60,51 +60,52 @@ static t_prompt init_vars(t_prompt prompt, char *str, char **av)
     else
         num = ft_itoa(ps_atoi(str) + 1);
     free(str);
-    prompt.envp = mini_setenv("SHLVL", num, prompt.envp, 5);       
+    p.envp = mini_setenv("SHLVL", num, p.envp, 5);       
     free(num);
-    str = mini_getenv("PATH", prompt.envp, 4);                       
+    str = mini_getenv("PATH", p.envp, 4);                       
     if(!str)
-        prompt.envp = mini_setenv("PATH", "/usr/local/sbin/:/usr/local/bin:/usr/bin:/bin", prompt.envp, 4);
+        p.envp = mini_setenv("PATH", "/usr/local/sbin/:/usr/local/bin:/usr/bin:/bin", p.envp, 4);
     free(str);
-    str = mini_getenv("_", prompt.envp, 1);                          
+    str = mini_getenv("_", p.envp, 1);                          
     if (!str)
-        prompt.envp = mini_setenv("_", av[0], prompt.envp, 1);         
+        p.envp = mini_setenv("_", av[0], p.envp, 1);         
     free(str);
-    return (prompt); 
+        return (p); 
 }
 
-static t_prompt init_prompt(char **av, char **envp) 
+static t_dot init_prompt(char **av, char **envp) 
 {
-    t_prompt prompt;
+    t_dot p;
+    t_mini m;
     char *str;
 
     str = NULL;
-    prompt.cmds = NULL;
-    prompt.envp = ft_mx_dup(envp);                              
+    p.cmds = NULL;
+    p.envp = ft_mx_dup(envp);                              
     g_status = 0;
-    mini_getpid(&prompt);                          
-    prompt = init_vars(prompt, str, av);            
-    return (prompt); 
+    mini_getpid(&p);                          
+    m = init_vars(p, str, av);            
+    return (p); 
 }
 
 int main(int ac, char **av, char **envp) 
 {
     char *str;
     char *input;
-    t_prompt prompt;
+    t_dot p;
 
-    prompt = init_prompt(av, envp);                   
+    p = init_prompt(av, envp);                   
     while (av && ac) {
         signal(SIGINT, handle_sigint);               
         signal(SIGQUIT, SIG_IGN);                    
-        str = mini_getprompt(prompt);                
+        str = mini_getprompt(p);                
         if (str)
             input = readline(str);                    
         else
             input = readline("guest@minishell $ ");     
         free(str);
-        if (!check_args(input, &prompt))             
-            break;
+        p = check_args(input, p);
+  
     }
     exit(g_status); 
 }
