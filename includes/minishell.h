@@ -4,6 +4,8 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include "../includes/get_next_line.h"
 # include "../libft/incs/libft.h"
 
@@ -80,8 +82,8 @@ char		*mini_getenv(char *var, char **envp, int n);
 char		**mini_setenv(char *var, char *value, char **envp, int n);
 // //prompt 
  char   		*mini_getprompt(t_dot p);
- static t_dot	init_vars(t_dot prompt, char *str, char **av);
- static t_dot	init_prompt(char **av, char **envp); 
+//  static t_mini	init_vars(t_dot prompt, char *str, char **av);
+//  static t_dot	init_prompt(char **av, char **envp); 
 // //parse
 t_dot 	parse_args(char **args, t_dot p);
 t_dot  	check_args(char *out, t_dot p);

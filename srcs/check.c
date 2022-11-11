@@ -45,14 +45,15 @@ static void mini_getpid(t_dot *p)
     p->pid = pid - 1; 
 }
 
-static t_dot init_vars(t_dot p, char *str, char **av)
+static t_mini init_vars(t_dot p, char *str, char **av)
 {
     char *num;
+    t_mini m;
 
-    p.cmds = getcwd(NULL, 0);                                            
+    str = getcwd(NULL, 0);                                            
     p.envp = mini_setenv("PWD", str, p.envp, 3);           
     free(str);
-    str = mini_getenv("SHLVL", p.envp, 5);                       
+    p.= mini_getenv("SHLVL", p.envp, 5);                       
     if(!str)
         num = ft_strdup("1");
     else if(!(ps_atoi(str)))
@@ -70,7 +71,7 @@ static t_dot init_vars(t_dot p, char *str, char **av)
     if (!str)
         p.envp = mini_setenv("_", av[0], p.envp, 1);         
     free(str);
-        return (p); 
+        return (); 
 }
 
 static t_dot init_prompt(char **av, char **envp) 
