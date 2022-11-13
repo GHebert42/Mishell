@@ -10,13 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../includes/minishell.h"
-# include "../libft/incs/libft.h"
+
+#include "../includes/minishell.h"
 
 extern int g_status;
 
@@ -26,7 +21,7 @@ void    handle_sigint(int sig)
     {
         g_status = 130;
         ioctl(STDIN_FILENO, TIOCSTI, "\n");                           
-        // rl_replace_line("", 0);                                    
+        rl_replace_line("", 0);                                    
         rl_on_new_line();                                          
     } 
 }

@@ -10,14 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include "../includes/minishell.h"
-# include "../libft/incs/libft.h"
-
 extern int g_status;
 
 static int ft_count_words(const char *s, char *c, int i[2])
