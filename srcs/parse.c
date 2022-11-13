@@ -72,7 +72,7 @@ void *check_args(char *out, t_dot *p)
     }
     if (out[0] != '\0')
         add_history(out);                                 
-    tab = ft_cmdtrim(out, " ");                               
+    tab = ft_cmdtrim(out, " ");           //input divided by space  **tab              
     free(out);
     if (!tab)
         return ("");

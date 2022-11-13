@@ -3,7 +3,7 @@
 extern int g_status;
 
 
-static t_mini	*mini_init(void)
+static t_mini	*mx_init(void)
 {
 	t_mini	*m;
 
@@ -82,7 +82,7 @@ t_list	*fill_nodes(char **args, int i)
 		if (i == 0 || (args[i][0] == '|' && args[i + 1] && args[i + 1][0]))
 		{
 			i += args[i][0] == '|';
-			ft_lstadd_back(&cmds[0], ft_lstnew(mini_init()));
+			ft_lstadd_back(&cmds[0], ft_lstnew(mx_init()));
 			cmds[1] = ft_lstlast(cmds[0]);
 		}
 		temp[0] = args;
