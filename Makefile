@@ -18,7 +18,7 @@ HEADER	= -I includes/
 
 
 SRCS 	=	check.c signal.c parse.c prompt.c subsplit.c \
-			divide.c update.c #expand.c 
+			divide.c update.c expand.c  trimm_all.c redir.c 
 S_DIR	= 	srcs/
 S_PTH	= 	$(addprefix $(S_DIR), $(SRCS))
 OBJ_S 	=	$(S_PTH:.c=.o)

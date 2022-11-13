@@ -102,8 +102,12 @@ char	*expand_vars(char *str, int i, int quotes[2], t_dot *p);
 char	*expand_path(char *str, int i, int quotes[2], char *var);
 //nodes
 t_list	*fill_nodes(char **args, int i);
-//
-
+//redir
+t_mini *get_outfile1(t_mini *token, char **args, int *i);
+t_mini *get_outfile2(t_mini *token, char **args, int *i);
+t_mini *get_infile1(t_mini *token, char **args, int *i);
+t_mini *get_infile2(t_mini *token, char **args, int *i);
+int	get_fd(int oldfd, char *path, int flags[2]);
 	//  static t_dot	init_vars(t_dot prompt, char *str, char **av);
 	//  static t_dot	init_prompt(char **av, char **envp); 
 	// static char **split_all(char **args, t_dot p);
