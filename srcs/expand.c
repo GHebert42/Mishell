@@ -39,7 +39,8 @@ char    *expand_path(char *str, int i, int quotes[2], char *var)
     {
         quotes[0] = (quotes[0] + (!quotes[1] && str[i] == '\'')) % 2;
         quotes[1] = (quotes[1] + (!quotes[0] && str[i] == '\"')) % 2; 
-        if (!quotes[0] && !quotes[1] && str[i] == '~' && (i == 0) || str[i - 1] != '$')
+        if (!quotes[0] && !quotes[1] && str[i] == '~' && (i == 0 || \
+            str[i - 1] != '$'))
         {
             aux = ft_substr(str, 0, i);
             path = ft_strjoin(aux, var);
