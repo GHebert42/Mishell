@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:28:46 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 21:29:10 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/13 22:16:00 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ t_mini	*get_infile2(t_mini *token, char **args, int *i)
 	if (args[++(*i)])
 	{
 		aux[0] = args[*i];
-		token->infile = get_here_doc(str, aux);
+		//token->infile = get_here_doc(str, aux);  /*later */
 	}
 	if (!args[*i] || token->infile == -1)
 	{

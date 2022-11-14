@@ -15,7 +15,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-
 /* fd Refs*/
 # define READ_END 0
 # define WRITE_END 1
@@ -49,39 +48,51 @@ enum TokenType{
 	TOKEN = -1,
 };
 
-typedef struct s_dot t_dot;
-typedef struct s_token t_token;
-typedef struct s_lexer t_lexer; 
-typedef struct s_mini t_mini;
+/* Token's end type */
+enum EndType{
+	ERR_END   = 0,
+	OUTF1_END = 1,
+	OUTF2_END = 2,
+	INF1_END  = 3,
+	INF2_END  = 4,
+	PIPE_END  = 5,
+	DEAD_END  = 6
+};
 
-struct s_dot
+typedef struct s_dot t_dot;
+typedef struct s_mini t_mini;
+typedef struct s_token t_token;
+// typedef struct s_lexer t_lexer; 
+
+struct s_dot		/*  ENVP BUILDER */
 {
 	t_list *cmds;
 	char **envp;
 	pid_t	pid;
 };
 
-struct s_token
-{
-	char *data;
-	int type;
-	t_token *next;
-};
-
-
-struct s_lexer
-{
-	t_token *listok;
-	int  ntok;
-};
-
-struct s_mini
+struct s_mini 	 	/*	MATRIX COMMAND TABLE */
 {
 	char **full_cmd;
 	char *full_path;
 	int infile;
 	int outfile;
 };
+
+struct s_token		/*	 THREE-PART NODE-FORM TOKEN		*/
+{
+	char *cmd;
+	char *arg;
+	int	endtype;
+	t_token *next;
+};
+
+
+// struct s_lexer
+// {
+// 	t_token *listok;
+// 	int  ntok;
+// };
 
 //signal
 void    	handle_sigint(int sig);
@@ -93,7 +104,7 @@ char   		*mini_getprompt(t_dot p);
 void	*check_args(char *out, t_dot *p);
 //subsplit
 char 	**ft_cmdtrim(const char *s, char *set);
-//div_cmd
+//divide
 char	**ft_cmd_div(char const *s, char *set);
 //update
 void    exec_custom(char ***out, char *full, char *args, char **envp) ;
@@ -108,6 +119,11 @@ t_mini *get_outfile2(t_mini *token, char **args, int *i);
 t_mini *get_infile1(t_mini *token, char **args, int *i);
 t_mini *get_infile2(t_mini *token, char **args, int *i);
 int	get_fd(int oldfd, char *path, int flags[2]);
+//trimm_all
+char        *ft_strtrim_all(const char *s, int squote, int dquote);
+//display
+void display_form(t_mini *mx);
+
 	//  static t_dot	init_vars(t_dot prompt, char *str, char **av);
 	//  static t_dot	init_prompt(char **av, char **envp); 
 	// static char **split_all(char **args, t_dot p);

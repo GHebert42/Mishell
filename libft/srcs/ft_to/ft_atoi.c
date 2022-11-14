@@ -9,12 +9,7 @@
 /*   Updated: 2021/10/06 09:06:12 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-<<<<<<< HEAD:libft/srcs/ft_to/ft_atoi.c
-
-#include "../includes/libft.h"
-=======
 #include "../../incs/libft.h"
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1:libft/ft_to/ft_atoi.c
 
 int	ft_atoi(const char *str)
 {
@@ -40,56 +35,3 @@ int	ft_atoi(const char *str)
 		num = num * 10 + (*(str + i++) - '0');
 	return (num * sign);
 }
-
-<<<<<<< HEAD:libft/srcs/ft_to/ft_atoi.c
-=======
-long long	ps_atoll(char *s)
-{
-	int					i;
-	int					neg;
-	unsigned long long	ret;
-
-	i = 0;
-	ret = 0;
-	neg = 1;
-	while (s[i] == '\t' || s[i] == '\n' || s[i] == '\r' || s[i] == '\v' || \
-		s[i] == '\f' || s[i] == ' ')
-		i++;
-	if (s[i] == '-')
-		neg = -1;
-	if (s[i] == '-' || s[i] == '+')
-		i++;
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		ret = 10 * ret + s[i] - '0';
-		i++;
-	}
-	ret = ret * neg;
-	return (ret);
-}
-
-int	ps_atoi(char *s)
-{
-	int					i;
-	int					neg;
-	unsigned long long	ret;
-
-	i = 0;
-	ret = 0;
-	neg = 1;
-	while (s[i] == '\t' || s[i] == '\n' || s[i] == '\r' || s[i] == '\v' || \
-		s[i] == '\f' || s[i] == ' ')
-		i++;
-	if (s[i] == '-')
-		neg = -1;
-	if (s[i] == '-' || s[i] == '+')
-		i++;
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		ret = 10 * ret + s[i] - '0';
-		i++;
-	}
-	ret = ret * neg;
-	return ((int)ret);
-}
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1:libft/ft_to/ft_atoi.c

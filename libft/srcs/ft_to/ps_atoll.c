@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_atoi.c                                          :+:      :+:    :+:   */
+/*   ps_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 05:58:38 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 23:09:54 by gehebert         ###   ########.fr       */
+/*   Created: 2022/11/13 23:08:54 by gehebert          #+#    #+#             */
+/*   Updated: 2022/11/13 23:09:33 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/libft.h"
 
-int	ps_atoi(char *s)
+long long	ps_atoll(char *s)
 {
 	int					i;
 	int					neg;
@@ -34,5 +34,5 @@ int	ps_atoi(char *s)
 		i++;
 	}
 	ret = ret * neg;
-	return ((int)ret);
+	return (ret);
 }

@@ -6,12 +6,13 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:29:37 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 21:29:38 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/13 23:20:37 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/minishell.h"
+
 extern int g_status;
 
 
@@ -75,7 +76,8 @@ static char	**get_trimmed(char **args)
 
 static t_list	*stop_fill(t_list *cmds, char **args, char **temp)
 {
-	ft_lstclear(&cmds, free_content);
+	(void)  &cmds;
+	// ft_lstclear(&cmdc, free_content);
 	ft_mx_free(&temp);
 	ft_mx_free(&args);
 	return (NULL);
