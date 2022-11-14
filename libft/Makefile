@@ -16,14 +16,22 @@ NAME = libft.a
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
+<<<<<<< HEAD
 SUBDIRS		= ft_is ft_to ft_mem ft_str ft_put ft_lst ft_arr ft_mx 
+=======
+SUBDIRS		= ft_is ft_to ft_mem ft_str ft_put ft_lst ft_arr ft_mx files 
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
 SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
 SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
 OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
+<<<<<<< HEAD
 INCLUDES	= -I includes
+=======
+INCLUDES	= -I incs
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
 CC 			= gcc
 CFLAGS 		= -Wall -Wextra -Werror  
@@ -48,7 +56,11 @@ $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
+<<<<<<< HEAD
 			@ar -rcs $(NAME) $(OBJS)
+=======
+			@ar -r $(NAME) $(OBJS)
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 			@ranlib $(NAME)
 
 clean:

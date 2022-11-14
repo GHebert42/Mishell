@@ -6,6 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:05:13 by gehebert          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/09 01:09:01 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -23,6 +24,17 @@ extern int g_status;
 static int ft_count_words(const char *s, char *c, int i[2])
 {
     int     q[2];
+=======
+/*   Updated: 2022/11/10 22:00:31 by gehebert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/minishell.h"
+
+static int word_count(const char *s, char *c, int i[2])
+{
+    int     q[2];   // quotes match delimter
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
     q[0] = 0;
     q[1] = 0;
@@ -51,7 +63,11 @@ static int ft_count_words(const char *s, char *c, int i[2])
 static char **ft_fill_array(char **aux, const char *s, char *set, int i[3])
 {
     int     len;
+<<<<<<< HEAD
     int     q[2];
+=======
+    int     q[2];       // quotes match
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
     q[0] = 0;
     q[1] = 0;
@@ -79,8 +95,13 @@ char **ft_cmdtrim(const char *s, char *set)
 {
     char    **aux;
     int     nwords;
+<<<<<<< HEAD
     int     i[3];
     int     count[2];
+=======
+    int     i[3];       //state pos: start, sub-end, end
+    int     count[2];   // str sub len [0:start/1:end]
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
     i[0] = 0;
     i[1] = 0;
@@ -89,7 +110,11 @@ char **ft_cmdtrim(const char *s, char *set)
     count[1] = 0;
     if (!s)
         return (NULL);
+<<<<<<< HEAD
     nwords = ft_count_words(s, set, count);
+=======
+    nwords = word_count(s, set, count);
+>>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
     if (nwords == -1)
         return (NULL);
     aux = malloc(sizeof(char *) * (nwords + 1));

@@ -146,6 +146,30 @@ void    *check_args(char *out, t_prompt *p) {
         ft_lstclear(&p->cmds, free_content);
     return (p); 
 }
+- - - - - -
+
+
+char    **ft_cmd_div(char const *s, char *set)
+{
+    char    **aux;
+    int     wnum;
+    int     i[3];
+
+    i[0] = 0;
+    i[1] = 0;
+    i[2] = 0;
+    if (!s)
+        return (NULL):
+    wnum = word_count((char *)s, set, 0);
+    if (wnum == -1)
+        return (NULL);
+    aux = malloc(sizeof(char *) * (wnum + 1)) ;
+    if (aux == NULL)
+        return (NULL);
+    aux = ft_fill_array(aux, (char *)s, set, i);
+    aux[wnum] = NULL;
+    return (aux);    
+}
 
 - - - - - - 
 // signal
