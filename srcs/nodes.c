@@ -6,15 +6,11 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:29:37 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 23:20:37 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/14 00:15:59 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/minishell.h"
-
-extern int g_status;
-
 
 static t_mini	*mx_init(void)
 {

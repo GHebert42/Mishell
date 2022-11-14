@@ -6,12 +6,11 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 02:11:13 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 19:49:05 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/14 00:16:35 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-extern int g_status;
 
 static void update_output(char ***mx, int fd)
 {

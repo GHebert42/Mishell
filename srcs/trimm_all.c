@@ -6,13 +6,13 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:28:33 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 21:28:36 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/14 00:16:50 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/minishell.h"
-extern int g_status;
+
 
 static int  malloc_len(const char *s)
 {

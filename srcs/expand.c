@@ -1,5 +1,6 @@
 
 #include "../includes/minishell.h"
+
 extern int g_status;
 
 static char *get_substr_var(char *str, int i, t_dot *p)
