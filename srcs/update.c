@@ -6,25 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 02:11:13 by gehebert          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/09 02:49:03 by gehebert         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../incs/minishell.h"
-
-# include "../libft/includes/get_next_line.h"
-
-extern int g_status;
-
-static void update_output(char **mx, int fd) {
-=======
-/*   Updated: 2022/11/10 18:10:56 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:49:05 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +15,6 @@ extern int g_status;
 
 static void update_output(char ***mx, int fd)
 {
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
     char **aux;
     char *tmp;
     char *line;
@@ -50,19 +31,11 @@ static void update_output(char ***mx, int fd)
         aux = ft_mx_ext(aux, tmp);                       
         free(tmp);
     }
-<<<<<<< HEAD
-    ft_mx_free(mx);
-    *mx = aux; 
-}
-
-void    exec_custom(char **out, char *full, char *args, char **envp) 
-=======
     // ft_mx_free(mx);
     *mx = aux; 
 }
 
 void    exec_custom(char ***out, char *full, char *args, char **envp) 
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 {
     pid_t   pid;
     int     fd[2];
