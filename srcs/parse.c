@@ -6,8 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:48:49 by gehebert          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/09 04:01:44 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:23:06 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +27,6 @@ static char **split_all(char **args, t_prompt *p)
     char **subsplit;
     int i;
     // int quotes[2];
-=======
 /*   Updated: 2022/11/11 02:08:37 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -42,22 +40,14 @@ static char **split_all(char **args, t_dot *p)
     char **subsplit;
     int i;
     int quotes[2];
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
     (void) p;
     i = -1;
     while (args && args[++i])
     {
-<<<<<<< HEAD
-        // args[i] = expand_vars(args[i], -1, quotes, p);       
-        // args[i] = expand_path(args[i], -1, quotes, \
-        //     mini_getenv("HOME", prompt->envp, 4));              
-        // subsplit = ft_cmdsubsplit(args[i], "<|>");              
-=======
         args[i] = expand_vars(args[i], -1, quotes, p);       
         args[i] = expand_path(args[i], -1, quotes, mini_getenv("HOME", p->envp, 4));              
         subsplit = ft_cmd_div(args[i], "<|>");              
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
         ft_mx_rpl(&args, subsplit, i);                           
         i += ft_mx_len(subsplit) - 1;                          
         ft_mx_free(&subsplit);                                 
@@ -96,20 +86,6 @@ static void *parse_args(char **args, t_dot *p)
     //     g_status = 0;
     if (g_status > 255)
         g_status = g_status / 255;
-<<<<<<< HEAD
-    if (args && is_exit)
-    {
-        // ft_lstclear(&p->cmds, free_content);
-        return (NULL);
-    }
-    return (p);
-}
-
-void    *check_args(char *out, t_prompt *p) 
-{
-    char    **a;
-    // t_mini *n;
-=======
     // if (args && is_exit)
     // {
     //     ft_lstclear(&p->cmds, free_content);
@@ -122,7 +98,6 @@ void *check_args(char *out, t_dot *p)
 {
     char    **tab;
     t_mini  *m;
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
     if (!out)
     {

@@ -6,26 +6,12 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:40:01 by gehebert          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/09 03:36:49 by gehebert         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../incs/minishell.h"
-# include "../libft/includes/libft.h"
-=======
-/*   Updated: 2022/11/11 02:39:16 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:22:13 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/minishell.h"
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
 
 extern int g_status;
 
@@ -34,15 +20,9 @@ void    handle_sigint(int sig)
     if (sig == SIGINT)
     {
         g_status = 130;
-<<<<<<< HEAD
-        ioctl(STDIN_FILENO, TIOCSTI, "\n");                            // --
-        //rl_replace_line("", 0);                                        // --
-        rl_on_new_line();                                             //  --
-=======
         ioctl(STDIN_FILENO, TIOCSTI, "\n");                           
-        rl_replace_line("", 0);                                    
+        // rl_replace_line("", 0);                                    
         rl_on_new_line();                                          
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
     } 
 }
 
