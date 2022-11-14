@@ -26,7 +26,7 @@ static t_mini	*mx_init(void)
 	return (m);
 }
 
-static t_mini	*get_params(t_mini *node, char **a[2], int *i)
+static t_mini	*endtype_params(t_mini *node, char **a[2], int *i)
 {
 	if (a[0][*i])
 	{
@@ -85,7 +85,7 @@ t_list	*fill_nodes(char **args, int i)
 	char	**temp[2];
 
 	cmds[0] = NULL;
-	temp[1] = get_trimmed(args);
+	temp[1] = get_trimmed(args); /* */
 	while (args[++i])
 	{
 		cmds[1] = ft_lstlast(cmds[0]);
@@ -96,7 +96,7 @@ t_list	*fill_nodes(char **args, int i)
 			cmds[1] = ft_lstlast(cmds[0]);
 		}
 		temp[0] = args;
-		cmds[1]->content = get_params(cmds[1]->content, temp, &i);
+		cmds[1]->content = endtype_params(cmds[1]->content, temp, &i);
 		if (i < 0)
 			return (stop_fill(cmds[0], args, temp[1]));
 		if (!args[i])

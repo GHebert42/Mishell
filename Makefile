@@ -19,15 +19,11 @@ SRCS 	=	check.c signal.c parse.c prompt.c \
 			subsplit.c divide.c update.c nodes.c \
 			expand.c trimm_all.c redir.c \
 			get_next_line.c get_next_line_utils.c 
-
-
 S_DIR	= 	srcs/
 S_PTH	= 	$(addprefix $(S_DIR), $(SRCS))
 OBJ_S 	=	$(S_PTH:.c=.o)
 
 RDPATH = readline/libreadline.a readline/libhistory.a
-
-SRCS_PATH = src/
 
 $(NAME): 	$(OBJ_S)
 	-@$(MAKE) -C $(F_DIR) 
