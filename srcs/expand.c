@@ -14,7 +14,7 @@ static char *get_substr_var(char *str, int i, t_dot *p)
     if (pos == -1)
         pos = ft_strlen(str) - 1;
     aux = ft_substr(str, 0, i - 1);
-    var = mini_getenv(&str[i], p->envp, \
+    var = getenv(&str[i], p->envp, \
         ft_strchar_i(&str[i], "\"\'$|>< "));
     if (!var && str[i] == '$')
         var = ft_itoa(p->pid);
