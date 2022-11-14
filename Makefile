@@ -55,16 +55,10 @@ H_PTH	=	$(addprefix $(H_DIR), $(H_SRC))
 HEADER	= -I includes/
 
 
-<<<<<<< HEAD
-SRCS 	=	main.c prompt.c signal.c parse.c subsplit.c update.c 
-=======
+
 SRCS 	=	check.c signal.c parse.c prompt.c subsplit.c \
-<<<<<<< HEAD
-			divide.c update.c #expand.c 
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
-=======
 			divide.c update.c expand.c  trimm_all.c redir.c 
->>>>>>> refs/remotes/caliss/master
+
 S_DIR	= 	srcs/
 S_PTH	= 	$(addprefix $(S_DIR), $(SRCS))
 OBJ_S 	=	$(S_PTH:.c=.o)
@@ -106,9 +100,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-<<<<<<< HEAD
 .PHONY	:	clean fclean re bonus
-=======
-.PHONY	:	clean fclean re bonus
-
->>>>>>> 0899604fbd76ebb5d884b258fef592fcc32fd7f1
