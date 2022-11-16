@@ -23,7 +23,7 @@ static char *get_home(t_dot p)
     pwd = getcwd(NULL, 0);                                        
     if (!pwd)
         pwd = ft_strdup("@ ");
-    home = mini_getenv("HOME", p.envp, 4);
+    home = getenv("HOME", p.envp, 4);
     if (home && home[0] && ft_strnstr(pwd, home,ft_strlen(pwd)))  
     {
         tmp = pwd;
@@ -70,7 +70,7 @@ static char *get_user(t_dot p)
     return (tmp); 
 }
 
-char    *mini_getprompt(t_dot p)
+char    *getprompt(t_dot p)
 {
     char *tmp;
     char *tmp2;

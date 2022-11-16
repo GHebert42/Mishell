@@ -14,6 +14,7 @@
 # include <sys/types.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 /* fd Refs*/
 # define READ_END 0
@@ -88,19 +89,12 @@ struct s_token		/*	 THREE-PART NODE-FORM TOKEN		*/
 	t_token *next;
 };
 
-
-// struct s_lexer
-// {
-// 	t_token *listok;
-// 	int  ntok;
-// };
-
 //signal
 void    	handle_sigint(int sig);
-char		*mini_getenv(char *var, char **envp, int n);
-char		**mini_setenv(char *var, char *value, char **envp, int n);
+char	*getenv(char *var, char **envp, int n);
+char	**setenv(char *var, char *value, char **envp, int n);
 // //prompt 
-char   		*mini_getprompt(t_dot p);
+char   	*getprompt(t_dot p);
 //parse
 void	*check_args(char *out, t_dot *p);
 //subsplit
