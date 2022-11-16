@@ -81,6 +81,7 @@ struct s_mini 	 	/*	MATRIX COMMAND TABLE */
 
 struct s_token		/*	 THREE-PART NODE-FORM TOKEN		*/
 {
+	char **table;
 	char *cmd;
 	char *arg;
 	int	endtype;
@@ -122,8 +123,11 @@ int	get_fd(int oldfd, char *path, int flags[2]);
 //trimm_all
 char        *ft_strtrim_all(const char *s, int squote, int dquote);
 //display
-// void		mx_display(t_mini *m);
-void		mx_display(char **tab);
+void		mx_display_tnk(t_token *token);
+void		mx_display_tab(char **tab);
+void		mx_display_str(char *str);
+t_token		*init_token(t_dot *p);
+
 	//  static t_dot	init_vars(t_dot prompt, char *str, char **av);
 	//  static t_dot	init_prompt(char **av, char **envp); 
 	// static char **split_all(char **args, t_dot p);
