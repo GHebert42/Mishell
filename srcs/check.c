@@ -14,7 +14,7 @@
 
 extern int g_status;
 
-static void getpid(t_dot *p) 
+static void getmypid(t_dot *p) 
 {
     pid_t   pid;
 
@@ -40,23 +40,23 @@ static t_dot init_vars(t_dot p, char *str, char **av)
     // t_mini m;
 
     str = getcwd(NULL, 0);                                            
-    p.envp = setenv("PWD", str, p.envp, 3);          // 
+    p.envp = ms_setenv("PWD", str, p.envp, 3);          // 
     free(str);
-    str = getenv("SHLVL", p.envp, 5);                       ///
+    str = ms_getenv("SHLVL", p.envp, 5);                       ///
     if (!str || ft_atoi(str) <= 0)
         num = ft_strdup("1");
     else
         num = ft_itoa(ps_atoi(str) + 1);
     free(str);
-    p.envp = setenv("SHLVL", num, p.envp, 5);       //
+    p.envp = ms_setenv("SHLVL", num, p.envp, 5);       //
     free(num);
-    str = getenv("PATH", p.envp, 4);                       ///
+    str = ms_getenv("PATH", p.envp, 4);                       ///
     if(!str)
-        p.envp = setenv("PATH", "/usr/local/sbin/:/usr/local/bin:/usr/bin:/bin", p.envp, 4);  //
+        p.envp = ms_setenv("PATH", "/usr/local/sbin/:/usr/local/bin:/usr/bin:/bin", p.envp, 4);  //
     free(str);
-    str = getenv("_", p.envp, 1);                          ///
+    str = ms_getenv("_", p.envp, 1);                          ///
     if (!str)
-        p.envp = setenv("_", av[0], p.envp, 1);         //
+        p.envp = ms_setenv("_", av[0], p.envp, 1);         //
     free(str);
         return (p); 
 }
@@ -71,7 +71,7 @@ static t_dot init_prompt(char **av, char **envp)
     p.cmds = NULL;
     p.envp = ft_mx_dup(envp);                              
     g_status = 0;
-    getpid(&p);                          
+    getmypid(&p);                          
     p = init_vars(p, str, av);            
     return (p); 
 }
@@ -93,6 +93,7 @@ int main(int ac, char **av, char **envp)
         else
             input = readline("guest@minishell $ ");     
         free(str);
+        mx_display_str(input);
         // printf ("%s\n", input);
         if (!check_args(input, &p))
             break;

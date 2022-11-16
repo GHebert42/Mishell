@@ -3,18 +3,19 @@
 
 void mx_display_tab(char **tab)
 {
-    // int i = -1;
-    if (tab)// && tab[0])
+    int i = -1;
+    if (tab[i])// && tab[0])
     {
-        while(*tab++)
-            printf ("%s :: ", *tab);//[i]);
+        while(*tab[++i])
+            printf ("%s :: ", tab[i]);
         printf (" :: \n" );
+
     }
 }
 
 void mx_display_str(char *str)
 {
-    printf("\n %s ==  \n", str);
+    printf("\n %s ++++  \n", str);
 }
 
 void mx_display_tkn(t_token *token)

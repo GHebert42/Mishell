@@ -26,7 +26,7 @@ static char **split_all(char **args, t_dot *p)
     while (args && args[++i])
     {
         args[i] = expand_vars(args[i], -1, quotes, p);       
-        args[i] = expand_path(args[i], -1, quotes, getenv("HOME", p->envp, 4));              
+        args[i] = expand_path(args[i], -1, quotes, ms_getenv("HOME", p->envp, 4));              
         subsplit = ft_cmd_div(args[i], "<|>");              
         ft_mx_rpl(&args, subsplit, i);                           
         i += ft_mx_len(subsplit) - 1;                          
@@ -66,7 +66,7 @@ static void *parse_args(char **args, t_dot *p)
 void *check_args(char *out, t_dot *p) 
 {
     char    **tab;
-    t_token	*token;
+    t_token	*token = NULL;
     t_mini  *m;
     
     if (!out)
@@ -77,16 +77,18 @@ void *check_args(char *out, t_dot *p)
     if (out[0] != '\0')
         add_history(out);                                 
     tab = ft_cmdtrim(out, " ");           //input divided by space  **tab    
+    mx_display_tab(tab);
     free(out);
     if (!tab)
         return ("");
     p = parse_args(tab, p);     
-    token = init_token(p);                               
+    // token = init_token(p); 
     mx_display_str(token->cmd);
+    // mx_display_tkn(token);
     if (p && p->cmds)
         m = p->cmds->content;
     if (p && p->cmds && m && m->full_cmd && ft_lstsize(p->cmds) == 1)
-        p->envp = setenv("_", m->full_cmd[ft_mx_len(m->full_cmd) - 1],\
+        p->envp = ms_setenv("_", m->full_cmd[ft_mx_len(m->full_cmd) - 1],\
             p->envp, 1);                                  
     // if (p->cmds->content)
     // {

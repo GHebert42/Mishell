@@ -21,12 +21,12 @@ void    handle_sigint(int sig)
     {
         g_status = 130;
         ioctl(STDIN_FILENO, TIOCSTI, "\n");                           
-        rl_replace_line("", 0);                                    
+        //rl_replace_line("", 0);                                    
         rl_on_new_line();                                          
     } 
 }
 
-char    *getenv(char *var, char **envp, int n)
+char    *ms_getenv(char *var, char **envp, int n)
 {
     int i;
     int n2;
@@ -46,7 +46,7 @@ char    *getenv(char *var, char **envp, int n)
     return (NULL);  
 }
  
-char    **setenv(char *var, char *value, char **envp, int n)
+char    **ms_setenv(char *var, char *value, char **envp, int n)
 {
     int i[2];
     char *aux[2];

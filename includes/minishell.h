@@ -91,11 +91,11 @@ struct s_token		/*	 THREE-PART NODE-FORM TOKEN		*/
 
 //signal
 void    	handle_sigint(int sig);
-char	*getenv(char *var, char **envp, int n);
-char	**setenv(char *var, char *value, char **envp, int n);
+char	*ms_getenv(char *var, char **envp, int n);
+char	**ms_setenv(char *var, char *value, char **envp, int n);
 // //prompt 
 char   	*getprompt(t_dot p);
-//parse
+//parse3
 void	*check_args(char *out, t_dot *p);
 //subsplit
 char 	**ft_cmdtrim(const char *s, char *set);

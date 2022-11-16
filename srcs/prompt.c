@@ -23,7 +23,7 @@ static char *get_home(t_dot p)
     pwd = getcwd(NULL, 0);                                        
     if (!pwd)
         pwd = ft_strdup("@ ");
-    home = getenv("HOME", p.envp, 4);
+    home = ms_getenv("HOME", p.envp, 4);
     if (home && home[0] && ft_strnstr(pwd, home,ft_strlen(pwd)))  
     {
         tmp = pwd;
