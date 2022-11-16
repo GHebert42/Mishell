@@ -122,8 +122,8 @@ int	get_fd(int oldfd, char *path, int flags[2]);
 //trimm_all
 char        *ft_strtrim_all(const char *s, int squote, int dquote);
 //display
-void display_form(t_mini *mx);
-
+// void		mx_display(t_mini *m);
+void		mx_display(char **tab);
 	//  static t_dot	init_vars(t_dot prompt, char *str, char **av);
 	//  static t_dot	init_prompt(char **av, char **envp); 
 	// static char **split_all(char **args, t_dot p);
