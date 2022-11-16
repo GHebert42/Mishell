@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:48:49 by gehebert          #+#    #+#             */
-/*   Updated: 2022/11/13 23:23:49 by gehebert         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:45:03 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void *check_args(char *out, t_dot *p)
 {
     char    **tab;
     t_mini  *m;
-
+    
     if (!out)
     {
         printf("exit\n");
@@ -73,17 +73,22 @@ void *check_args(char *out, t_dot *p)
     }
     if (out[0] != '\0')
         add_history(out);                                 
-    tab = ft_cmdtrim(out, " ");           //input divided by space  **tab              
+    tab = ft_cmdtrim(out, " ");           //input divided by space  **tab    
     free(out);
     if (!tab)
         return ("");
     p = parse_args(tab, p);                                    
+    mx_display(tab);
     if (p && p->cmds)
         m = p->cmds->content;
     if (p && p->cmds && m && m->full_cmd && ft_lstsize(p->cmds) == 1)
         p->envp = setenv("_", m->full_cmd[ft_mx_len(m->full_cmd) - 1],\
             p->envp, 1);                                  
-    // if (p && p->cmds)
+    // if (p->cmds->content)
+    // {
+    //     mx_display(p);
+    //     exit(g_status);
+    // }
     //     ft_lstclear(&p->cmds, free_content);
     return (p); 
 }
