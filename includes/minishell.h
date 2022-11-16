@@ -95,7 +95,8 @@ char	*ms_getenv(char *var, char **envp, int n);
 char	**ms_setenv(char *var, char *value, char **envp, int n);
 // //prompt 
 char   	*getprompt(t_dot p);
-//parse3
+//parse
+// static	t_token		*init_token(t_dot *p);
 void	*check_args(char *out, t_dot *p);
 //subsplit
 char 	**ft_cmdtrim(const char *s, char *set);
@@ -107,7 +108,7 @@ void    exec_custom(char ***out, char *full, char *args, char **envp) ;
 char	*expand_vars(char *str, int i, int quotes[2], t_dot *p);
 char	*expand_path(char *str, int i, int quotes[2], char *var);
 //nodes
-t_list	*fill_nodes(char **args, int i);
+t_list	*fill_nodes(char **args, int i, t_token *token);
 //redir
 t_mini *get_outfile1(t_mini *token, char **args, int *i);
 t_mini *get_outfile2(t_mini *token, char **args, int *i);
@@ -117,10 +118,10 @@ int	get_fd(int oldfd, char *path, int flags[2]);
 //trimm_all
 char        *ft_strtrim_all(const char *s, int squote, int dquote);
 //display
-void		mx_display_tnk(t_token *token);
+void		mx_display_tkn(t_token *token);
 void		mx_display_tab(char **tab);
 void		mx_display_str(char *str);
-t_token		*init_token(t_dot *p);
+
 
 	//  static t_dot	init_vars(t_dot prompt, char *str, char **av);
 	//  static t_dot	init_prompt(char **av, char **envp); 

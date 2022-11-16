@@ -93,10 +93,10 @@ int main(int ac, char **av, char **envp)
         else
             input = readline("guest@minishell $ ");     
         free(str);
-        mx_display_str(input);
         // printf ("%s\n", input);
         if (!check_args(input, &p))
             break;
+        // mx_display_tab(input);
   
     }
     exit(g_status); 

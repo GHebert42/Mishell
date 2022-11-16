@@ -2,7 +2,7 @@
 NAME 	=	minishell
 
 CC 		= 	gcc
-CFLAGS 	=	-Wall -Wextra -Werror ${HEADER}
+CFLAGS 	=	-Wall -Wextra -Werror -g ${HEADER}
 RM 		=	rm -rf
 
 FSRC	=	

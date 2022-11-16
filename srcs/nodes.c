@@ -41,7 +41,7 @@ static t_mini	*get_params(t_mini *m, char **a[2], int *i)
 			m = get_infile1(m, a[1], i);
 		else if (a[0][*i][0] != '|')
 			m->full_cmd = ft_mx_ext(m->full_cmd, a[1][*i]);
-		else
+		else 
 		{
 			//mini_perror(PIPENDERR, NULL, 2);
 			*i = -2;
@@ -49,6 +49,7 @@ static t_mini	*get_params(t_mini *m, char **a[2], int *i)
 		return (m);
 	}
 	//mini_perror(PIPENDERR, NULL, 2);
+
 	*i = -2;
 	return (m);
 }
@@ -79,18 +80,18 @@ static t_list	*stop_fill(t_list *cmds, char **args, char **temp)
 	return (NULL);
 }
 
-t_list	*fill_nodes(char **args, int i)
+t_list	*fill_nodes(char **args, int i, t_token *token)
 {
-	t_token	*token = NULL;
 	t_list	*cmds[2];
 	char	**temp[2];
 	
-	// token = init_token()
 	cmds[0] = NULL;
 	temp[1] = get_trimmed(args);
 	while (args[++i])
 	{
 		cmds[1] = ft_lstlast(cmds[0]);
+		token->cmd = cmds[0]->content;
+		// mx_display_str(cmds[0]->content);
 		if (i == 0 || (args[i][0] == '|' && args[i + 1] && args[i + 1][0]))
 		{
 			i += args[i][0] == '|';
@@ -99,8 +100,11 @@ t_list	*fill_nodes(char **args, int i)
 		}
 		temp[0] = args;
 		cmds[1]->content = get_params(cmds[1]->content, temp, &i);
-		token->cmd = cmds[1]->content;
-		token->arg = *temp[1];
+		token->arg = cmds[1]->content;
+		mx_display_tkn(token);
+		// token->cmd = get_params(cmds[1]->content, temp, &i);
+		// cmds[1]->content = token->cmd;
+		// token->arg = *temp[1];
 		// token->endtype = cmds[1]->content;
 		if (i < 0)
 			return (stop_fill(cmds[0], args, temp[1]));
