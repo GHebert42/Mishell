@@ -1,44 +1,59 @@
 
 NAME 	=	minishell
 
-CC 		= 	gcc
-CFLAGS 	=	-Wall -Wextra -Werror -g ${HEADER}
-RM 		=	rm -rf
-
+#	LIBFT
 FSRC	=	
-F_DIR 	= 	libft/
-F_PTH	= 	$(addprefix $(F_DIR), $(FSRC))
-O_DIR 	= 	libft/objs/
-LIBFT	= 	libft/libft.a
+F_DIR	=	libft/
+F_PTH	=	$(addprefix $(F_DIR), $(FSRC))
+O_DIR 	=	libft/objs/
+LIBFT	=	libft/libft.a
 
-H_SRC 	=	minishell.h 
-H_DIR	= 	includes/
-H_PTH	=	$(addprefix $(H_DIR), $(H_SRC))
+S_DIR	=	srcs
+S_OBJ	=	objs
+SUBDIRS		= builtins mapping operators parsing utils
 
-SRCS 	=	check.c signal.c parse.c prompt.c \
-			subsplit.c divide.c update.c nodes.c \
-			expand.c trimm_all.c redir.c display.c \
-			get_next_line.c get_next_line_utils.c 
-S_DIR	= 	srcs/
-S_PTH	= 	$(addprefix $(S_DIR), $(SRCS))
-OBJ_S 	=	$(S_PTH:.c=.o)
+SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_DIR)/, $(dir)))
+OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
+SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
+OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
 
-RDPATH = readline/libreadline.a readline/libhistory.a
+#	READLINE HEADER
+RDPATH 		= readline/libreadline.a readline/libhistory.a
+#	HEADER
+H_DIR		= -I includes
 
-$(NAME): 	$(OBJ_S)
-	-@$(MAKE) -C $(F_DIR) 
-	-@$(CC) $(CFLAGS) $(OBJ_S) $(LIBFT) $(RDPATH) -lcurses -lreadline -o $(NAME) 
+SRCS_PATH = src/
+
+#	BUILD FOLDER
+$(S_OBJ)/%.o :	$(S_DIR)/%.c
+			@mkdir -p $(S_OBJ) $(OBJS_DIRS)
+			@$(CC) $(CFLAGS) $(H_DIR) -c $< -o $@
 
 all		:	$(NAME)
+			@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
+
+$(NAME): 	$(OBJS)
+		-@$(MAKE) -C $(F_DIR) -s
+		-@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDPATH) -lcurses -lreadline -o $(NAME) 
 
 clean	:
-				$(RM) $(OBJ_F) 
-				$(RM) $(OBJ_S) 
+				@$(RM) $(OBJ_F) 
+				@$(RM) -rf $(S_OBJ)
+				@echo "$(RED)$(S_OBJ) deleted!$(DEFAULT)"
 				
 fclean	:	clean
-				$(RM) $(O_DIR)
-				$(RM) $(NAME)
+				@$(RM) -rf $(O_DIR) $(LIBFT) 
+				@$(RM) $(NAME)
+				@echo "$(RED)$(NAME) deleted!$(DEFAULT)"
 
 re		:	fclean all
 
-.PHONY	:	clean fclean re bonus
+make ref		:	fclean all
+
+
+
+#COLORS
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+DEFAULT = \033[0m
