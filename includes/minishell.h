@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:36:20 by gehebert          #+#    #+#             */
-/*   Updated: 2023/03/21 15:27:53 by loadjou          ###   ########.fr       */
+/*   Updated: 2023/03/21 18:42:22 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ void		execustom(char ***out, char *full, char *args, char **envp);
 /***********************************************************/
 /*                       UTILS                             */
 /***********************************************************/
-void		error_msg(char *msg, int exiit);
-void		error_msg(char *msg, int exiit);
 void		*chk_error(int err_type, char *param, int err);
 void		free_cont(void *content);
 int			is_quoted(char *str);
