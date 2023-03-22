@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 04:36:20 by gehebert          #+#    #+#             */
-/*   Updated: 2023/03/21 18:42:22 by gehebert         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:55:08 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			builtins(t_table *tab, t_list *cmd, int *is_exit);
 int			is_builtin(t_node *t);
 char		*cmd_trimmed(char *envp);
 char		**edit_env(char **envp, int pos);
-// int 		exit_builtin(char **cmd);
+int			ms_echo(t_list *cmd);
 int			ms_exit(t_list *cmdl, int *is_exit);
 /*************************cd*******************************/
 int			cd(char **cmd, char **env);

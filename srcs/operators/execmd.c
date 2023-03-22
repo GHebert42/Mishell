@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:33:02 by gehebert          #+#    #+#             */
-/*   Updated: 2023/03/21 20:18:19 by gehebert         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:42:04 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ static char	*find_command(char **env_path, char *cmd, char *path)
 	path = NULL;
 	while (env_path && env_path[++i])
 	{
-		free(path);
 		temp = ft_strjoin(env_path[i], "/");
 		if (!temp)
 			return (NULL);
 		path = ft_strjoin(temp, cmd);
-		free(temp);
 		if (!path)
 			return (NULL);
 		if (access(path, F_OK) == 0)
@@ -36,7 +34,6 @@ static char	*find_command(char **env_path, char *cmd, char *path)
 	}
 	if (!env_path || !env_path[i])
 	{
-		free(path);
 		return (NULL);
 	}
 	return (path);

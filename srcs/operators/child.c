@@ -6,7 +6,7 @@
 /*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:32:42 by gehebert          #+#    #+#             */
-/*   Updated: 2023/03/16 11:38:43 by gehebert         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:06:11 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	child_builtin(t_table *tab, t_node *n, int l, t_list *cmd)
 		g_status = pwd();
 	else if (is_builtin(n) && n->cmd && !ft_strncmp(*n->cmd, "echo", l)
 		&& l == 4)
-		g_status = echo(n->cmd);
+		g_status = ms_echo(cmd);
 	else if (is_builtin(n) && cmd && !ft_strncmp(*n->cmd, "env", l) && l == 3)
 	{
 		ft_mx_fd(tab->envp, 1);

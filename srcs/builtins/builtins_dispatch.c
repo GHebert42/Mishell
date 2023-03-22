@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_dispatch.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 13:54:28 by bylkus            #+#    #+#             */
-/*   Updated: 2023/03/21 15:20:25 by loadjou          ###   ########.fr       */
+/*   Updated: 2023/03/21 21:54:09 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,6 @@ int	is_builtin(t_node *t)
 	return (0);
 }
 
-static void	execmd_1(t_table *tab, t_list *cmdl)
-{
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	execmd(tab, cmdl);
-}
-
 static void	builtin1(t_table *tab, t_list *cmdl, char **aux, int i)
 {
 	if (!cmdl->next && aux && !ft_strncmp(*aux, "cd", i) && i == 2)
@@ -70,7 +63,11 @@ static void	builtin1(t_table *tab, t_list *cmdl, char **aux, int i)
 		&& i == 3)
 		env(tab->envp);
 	else
-		execmd_1(tab, cmdl);
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
+		execmd(tab, cmdl);
+	}
 }
 
 int	builtins(t_table *tab, t_list *cmdl, int *is_exit)
@@ -92,4 +89,33 @@ int	builtins(t_table *tab, t_list *cmdl, int *is_exit)
 		cmdl = cmdl->next;
 	}
 	return (g_status);
+}
+
+int	ms_echo(t_list *cmd)
+{
+	int		newline;
+	int		i[2];
+	char	**argv;
+	t_node	*node;
+
+	i[0] = 0;
+	i[1] = 0;
+	newline = 1;
+	node = cmd->content;
+	argv = node->cmd;
+	while (argv && argv[++i[0]])
+	{
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2) && \
+			(ft_count_char(argv[i[0]], 'n') == \
+			(int)(ft_strlen(argv[i[0]]) - 1)))
+			newline = 0;
+		else
+		{
+			i[1] = 1;
+			ft_putstr_fd(argv[i[0]], 1);
+			if (argv[i[0] + 1])
+				ft_putchar_fd(' ', 1);
+		}
+	}
+	return (write(1, "\n", newline) == 2);
 }

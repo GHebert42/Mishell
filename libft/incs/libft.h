@@ -115,6 +115,7 @@ int			ft_findchar(char *str, char c);
 int			ft_all_spaces(char *str);
 int			ft_arraylen(char **str);
 int			ft_abs(float num);
+int			ft_count_char(char *str, char c);
 
 t_list		*ft_mx_lst(char **mx);
 char		**ft_lst_mx(t_list *lst);
