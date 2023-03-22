@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:33:02 by gehebert          #+#    #+#             */
-/*   Updated: 2023/03/21 15:43:36 by loadjou          ###   ########.fr       */
+/*   Updated: 2023/03/21 20:18:19 by gehebert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static DIR	*cmd_checks(t_table *tab, t_list *cmd, char ***s, char *path)
 	{
 		path = ms_getenv("PATH", tab->envp, 4);
 		*s = ft_split(path, ':');
-		free(path);
 		n->path = find_command(*s, *n->cmd, n->path);
 		if (!n->path || !n->cmd[0] || !n->cmd[0][0])
 			chk_error(NCMD, *n->cmd, 127);
