@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gehebert <gehebert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loadjou <loadjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:31:08 by gehebert          #+#    #+#             */
-/*   Updated: 2023/04/04 08:58:28 by gehebert         ###   ########.fr       */
+/*   Updated: 2023/04/06 08:26:19 by loadjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ static t_node	*get_params(t_node *node, char **a[2], int *i)
 {
 	if (a[0][*i])
 	{
-		if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] == '>')
+		if (a[0][0][0] == '|')
+		{
+			chk_error(PIPENDERR, NULL, 2);
+			*i = -2;
+		}
+		else if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] == '>')
 			node = get_outfile2(node, a[1], i);
 		else if (a[0][*i][0] == '>')
 			node = get_outfile1(node, a[1], i);
@@ -46,10 +51,7 @@ static t_node	*get_params(t_node *node, char **a[2], int *i)
 			chk_error(PIPENDERR, NULL, 2);
 			*i = -2;
 		}
-		return (node);
 	}
-	chk_error(PIPENDERR, NULL, 2);
-	*i = -2;
 	return (node);
 }
 
